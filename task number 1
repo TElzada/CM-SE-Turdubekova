@@ -1,17 +1,20 @@
-program machine_epsilon
-  implicit none
-  real :: epsilon, test_value
+program epsilon
+implicit none
+real :: epsilon
+integer :: n
+n = 0
+epsilon = 1.0
 
-  epsilon = 1.0
+do
+    epsilon = epsilon / 10
+    n = n + 1
+    if(1 + epsilon <= 1) then 
+        exit
+    end if
+end do
+    
+    
+    print *, "n:"
+    print *, "eps", epsilon
 
-  do while (1.0 + epsilon > 1.0)
-     test_value = epsilon
-     epsilon = epsilon / 10.0
-  end do
-
-  epsilon = test_value
-
-  print *, "Machine epsilon (the smallest ε such that 1 + ε > 1):"
-  print *, "Epsilon =", epsilon
-
-end program machine_epsilon
+end program epsilon
